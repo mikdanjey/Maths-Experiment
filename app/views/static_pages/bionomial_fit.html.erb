@@ -1,63 +1,67 @@
+<% provide(:title, "Binomial Distribution") %>
 <% if @x.present? && @f.present?%>
-
-<table border="1" width="20%">
+<div class="jumbotron">
+<p>Fit a Binomial Distribution to the following data:</p>
+<table style="width:50%" class="table table-bordered table-condensed bg-success" border="2" >
     <tr>
         <th>x: </th>
     <% (0..@n).each do |i| %>
-        <td><%= @x[i]%></td>
+        <td class="text-right"><%= @x[i]%></td>
     <% end %>
     </tr>
 
     <tr>
-    <th>f: </th>
+    <th>&#402;: </th>
     <% (0..@n).each do |i| %>
-        <td><%= @f[i]%></td>
+        <td class="text-right"><%= @f[i]%></td>
     <% end %>
     </tr>
 </table>
-<br>
 <hr>
-
-<table border="1" width="50%">
+<table style="width:50%" class="table table-bordered table-condensed bg-info" border="2">
     <tr>
-        <th>x</th>
-        <th>f</th>
-        <th>fx</th>
-        <th>P(X=x): nCx P<sup>x</sup>q<sup>n-x</sup></th>
-        <th>NP(x)</th>
-        <th>E</th>
+        <th class="text-center">x</th>
+        <th class="text-center">&#402;</th>
+        <th class="text-center">&#402;x</th>
+        <th class="text-center">P(X=x): nCx P<sup>x</sup>q<sup>n-x</sup></th>
+        <th class="text-center">NP(x)</th>
+        <th class="text-center">E</th>
     </tr>
-
-
     <% (0..@n).each do |i| %>
     <tr>
-        <td><%= @x[i] %></td>
-        <td><%= @f[i] %></td>
-        <td><%= @fx[i] %></td>
-        <td><%= @pXx[i] %></td>
-        <td><%= @NP[i] %></td>
-        <td><%= @E[i] %></td>
+        <td class="text-right"><%= @x[i] %></td>
+        <td class="text-right"><%= @f[i] %></td>
+        <td class="text-right"><%= @fx[i] %></td>
+        <td class="text-right"><%= @pXx[i] %></td>
+        <td class="text-right"><%= @NP[i] %></td>
+        <td class="text-right"><%= @E[i] %></td>
     </tr>
     <% end %>
     <tr>
         <th></th>
-        <th><%= @N %></th>
-        <th><%= @sfx %></th>
+        <th class="text-right"><%= @N %></th>
+        <th class="text-right"><%= @sfx %></th>
         <th></th>
         <th></th>
-        <th><%= @sE %></th>
+        <th class="text-right"><%= @sE %></th>
     </tr>
 </table>
-
-<br>
+<hr>
 n = <%= @n %><br>
 N = <%= @N %><br>
 &#8721;&#402;x = <%= @sfx %><br>
 <br>
 Arithmetic Mean = &#8721;&#402;x / N = <%= @sfx %>/<%= @N %> = <%= @arithmetic_mean %>
 <br><br>
-Bionamial Distribution<br><br>
+<p>Bionamial Distribution:</p>
 np = <%= @arithmetic_mean %><br>
 P = <%= @p %><br>
 q = <%= @q %><br>
+<br>
+<% if @N == @sE%>
+&there4; The Fit is Good.
+<% else %>
+&there4; The Fit is may be Good.
+<% end %>
+</div>
 <% end %>
