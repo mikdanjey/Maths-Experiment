@@ -1,10 +1,45 @@
 <% provide(:title, "Home") %>
 <div class="center jumbotron">
-  <h1>Welcome to the Sample App</h1>
-
-  <h2>
-    This is the home page for the
-    <a href="http://www.railstutorial.org/">Ruby on Rails Tutorial</a>
-    sample application.
-  </h2>
+<form class="form-inline" action="/" method="get">
+  <div class="form-group">
+    <label for="n">Input n Value:</label>
+    <input type="number" class="form-control" id="n" name="n" value="<%= @n %>" required="required" onkeypress='return ((event.charCode >= 48 && event.charCode <= 57) || event.charCode <= 16)'>
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+  <button type="reset" class="btn btn-danger">Clear</button>
+</form>
 </div>
+
+<% if @n.present?%>
+<hr><br>
+<form action="/bionomial_fit" method="get">
+  <table class="table table-bordered table-striped">
+    <tbody>
+      <tr>
+        <td><label for="x">x:</label></td>
+        <% (0..@n).each do |i| %>
+        <td>
+            <input type="number" class="form-control" id="n" value="<%= i %>" name="x[]" readonly required="required" onkeypress='return ((event.charCode >= 48 && event.charCode <= 57) || event.charCode <= 16)'>
+        </td>
+        <% end %>
+        <td><button type="reset" class="btn btn-danger" style="width:100%;">Clear</button></td>
+      </tr>
+
+      <tr>
+        <td><label for="f">f:</label></td>
+        <% (0..@n).each do |i| %>
+        <td>
+            <input type="number" class="form-control" id="f" value="<%#= rand(5..30) %>" name="f[]" required="required" onkeypress='return ((event.charCode >= 48 && event.charCode <= 57) || event.charCode <= 16)'>
+        </td>
+        <% end %>
+        <td><button type="submit" class="btn btn-primary" style="width:100%;">Submit</button></td>
+      </tr>
+
+    </tbody>
+  </table>
+  <input type="hidden" name="n" value="<%= @n %>">
+
+
+</form>
+
+<% end %>

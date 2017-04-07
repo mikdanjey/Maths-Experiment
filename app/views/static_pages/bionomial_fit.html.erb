@@ -1,0 +1,63 @@
+<% if @x.present? && @f.present?%>
+
+<table border="1" width="20%">
+    <tr>
+        <th>x: </th>
+    <% (0..@n).each do |i| %>
+        <td><%= @x[i]%></td>
+    <% end %>
+    </tr>
+
+    <tr>
+    <th>f: </th>
+    <% (0..@n).each do |i| %>
+        <td><%= @f[i]%></td>
+    <% end %>
+    </tr>
+</table>
+<br>
+<hr>
+
+<table border="1" width="50%">
+    <tr>
+        <th>x</th>
+        <th>f</th>
+        <th>fx</th>
+        <th>P(X=x): nCx P<sup>x</sup>q<sup>n-x</sup></th>
+        <th>NP(x)</th>
+        <th>E</th>
+    </tr>
+
+
+    <% (0..@n).each do |i| %>
+    <tr>
+        <td><%= @x[i] %></td>
+        <td><%= @f[i] %></td>
+        <td><%= @fx[i] %></td>
+        <td><%= @pXx[i] %></td>
+        <td><%= @NP[i] %></td>
+        <td><%= @E[i] %></td>
+    </tr>
+    <% end %>
+    <tr>
+        <th></th>
+        <th><%= @N %></th>
+        <th><%= @sfx %></th>
+        <th></th>
+        <th></th>
+        <th><%= @sE %></th>
+    </tr>
+</table>
+
+<br>
+n = <%= @n %><br>
+N = <%= @N %><br>
+&#8721;&#402;x = <%= @sfx %><br>
+<br>
+Arithmetic Mean = &#8721;&#402;x / N = <%= @sfx %>/<%= @N %> = <%= @arithmetic_mean %>
+<br><br>
+Bionamial Distribution<br><br>
+np = <%= @arithmetic_mean %><br>
+P = <%= @p %><br>
+q = <%= @q %><br>
+<% end %>
